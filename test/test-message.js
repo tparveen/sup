@@ -6,7 +6,8 @@ var spies = require('chai-spies');
 var mongoose = require('mongoose');
 var UrlPattern = require('url-pattern');
 var shared = require('./shared');
-var app = require('../index');
+var app = require('../index').app;
+var runServer = require('../index').runServer;
 
 var should = chai.should();
 
@@ -14,7 +15,17 @@ chai.use(chaiHttp);
 chai.use(spies);
 
 describe('Message endpoints', function() {
+    var server;
+    before(function(done) {
+        console.log('Before');
+        runServer(function(_server) {
+            server = _server;
+            done()
+        });
+    });
+
     beforeEach(function() {
+        console.log('Before each');
         mongoose.connection.db.dropDatabase();
         this.alice = {
             username: 'alice',
@@ -42,6 +53,12 @@ describe('Message endpoints', function() {
                 .put('/users/' + this.chuck._id)
                 .send(this.chuck);
         return Promise.all([promiseA, promiseB, promiseC]);
+    });
+
+    after(function() {
+        console.log('After');
+        mongoose.connection.close();
+        server.close();
     });
 
     describe('/messages', function() {
