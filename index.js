@@ -251,7 +251,9 @@ var runServer = function(callback) {
     mongoose.connect(databaseUri).then(function() {
         var server = app.listen(8080, function() {
             console.log('Listening on localhost:8080');
-            callback(server);
+            if (callback) {
+                callback(server);
+            }
         });
     });
 };
