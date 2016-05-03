@@ -17,7 +17,6 @@ chai.use(spies);
 describe('Message endpoints', function() {
     var server;
     before(function(done) {
-        console.log('Before');
         runServer(function(_server) {
             server = _server;
             done()
@@ -25,7 +24,6 @@ describe('Message endpoints', function() {
     });
 
     beforeEach(function() {
-        console.log('Before each');
         mongoose.connection.db.dropDatabase();
         this.alice = {
             username: 'alice',
@@ -56,7 +54,6 @@ describe('Message endpoints', function() {
     });
 
     after(function() {
-        console.log('After');
         mongoose.connection.close();
         server.close();
     });
