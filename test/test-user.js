@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 var UrlPattern = require('url-pattern');
 var shared = require('./shared');
 var app = require('../index').app;
-var runServer = require('../index').runServer;
 
 var should = chai.should();
 
@@ -15,21 +14,8 @@ chai.use(chaiHttp);
 chai.use(spies);
 
 describe('User endpoints', function() {
-    var server;
-    before(function(done) {
-        runServer(function(_server) {
-            server = _server;
-            done()
-        });
-    });
-
     beforeEach(function() {
         mongoose.connection.db.dropDatabase();
-    });
-
-    after(function() {
-        mongoose.connection.close();
-        server.close();
     });
 
     describe('/users', function() {
