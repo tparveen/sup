@@ -14,7 +14,8 @@ chai.use(spies);
 
 describe('User endpoints', function() {
     beforeEach(function() {
-        console.log(app._router.stack.length);
+        console.log(app._router.stack.length, 'endpoints');
+        console.log('Drop database');
         mongoose.connection.db.dropDatabase();
     });
 
