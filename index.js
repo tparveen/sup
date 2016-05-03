@@ -199,16 +199,22 @@ app.post('/messages', jsonParser, function(req, res) {
             res.status(422).json({
                 message: 'Incorrect field value: from'
             });
+            return null;
         }
         else if (!results[1]) {
             res.status(422).json({
                 message: 'Incorrect field value: to'
             });
+            return null;
         }
         else {
             return message.save()
         }
     }).then(function(user) {
+        if (!user) {
+            // Incorrect field values - handled above.
+            return;
+        }
         res.location('/messages/' + message._id).status(201).json({});
     }).catch(function(err) {
         console.log(err);
