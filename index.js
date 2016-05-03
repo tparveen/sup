@@ -41,6 +41,7 @@ app.post('/users', jsonParser, function(req, res) {
     user.save().then(function(user) {
         res.location('/users/' + user._id).status(201).json({});
     }).catch(function(err) {
+        console.log(err);
         res.status(500).send({
             message: 'Internal server error'
         });
@@ -59,6 +60,7 @@ app.get('/users/:userId', function(req, res) {
         }
         res.json(user);
     }).catch(function(err) {
+        console.log(err);
         res.status(500).send({
             message: 'Internal server error'
         });
@@ -94,6 +96,7 @@ app.put('/users/:userId', jsonParser, function(req, res) {
     }).then(function(user) {
         res.status(200).json({});
     }).catch(function(err) {
+        console.log(err);
         res.status(500).send({
             message: 'Internal server error'
         });
@@ -112,6 +115,7 @@ app.delete('/users/:userId', function(req, res) {
         }
         res.status(200).json({});
     }).catch(function(err) {
+        console.log(err);
         res.status(500).send({
             message: 'Internal server error'
         });
@@ -208,6 +212,7 @@ app.post('/messages', jsonParser, function(req, res) {
     }).then(function(user) {
         res.location('/messages/' + message._id).status(201).json({});
     }).catch(function(err) {
+        console.log(err);
         res.status(500).send({
             message: 'Internal server error'
         });
@@ -229,6 +234,7 @@ app.get('/messages/:messageId', function(req, res) {
         }
         res.json(message);
     }).catch(function(err) {
+        console.log(err);
         res.status(500).send({
             message: 'Internal server error'
         });
