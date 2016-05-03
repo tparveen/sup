@@ -89,7 +89,6 @@ app.put('/users/:userId', jsonParser, function(req, res) {
     User.findOneAndUpdate({
         _id: req.params.userId
     }, {
-        _id: req.params.userId,
         username: req.body.username
     }, {
         upsert: true
