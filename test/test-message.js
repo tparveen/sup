@@ -15,6 +15,7 @@ chai.use(spies);
 describe('Message endpoints', function() {
     var server;
     beforeEach(function() {
+        console.log(app._router.stack.length);
         mongoose.connection.db.dropDatabase();
         this.alice = {
             username: 'alice',
