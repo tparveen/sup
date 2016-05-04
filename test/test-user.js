@@ -13,10 +13,10 @@ chai.use(chaiHttp);
 chai.use(spies);
 
 describe('User endpoints', function() {
-    beforeEach(function() {
+    beforeEach(function(done) {
         console.log(app._router.stack.length, 'endpoints');
         console.log('Drop database');
-        mongoose.connection.db.dropDatabase();
+        mongoose.connection.db.dropDatabase(done);
     });
 
     describe('/users', function() {

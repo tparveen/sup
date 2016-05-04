@@ -14,36 +14,40 @@ chai.use(spies);
 
 describe('Message endpoints', function() {
     var server;
-    beforeEach(function() {
+    beforeEach(function(done) {
         console.log(app._router.stack.length, 'endpoints');
         console.log('Drop database');
-        mongoose.connection.db.dropDatabase();
-        this.alice = {
-            username: 'alice',
-            _id: 'AAAAAAAAAAAAAAAAAAAAAAAA'
-        };
+        mongoose.connection.db.dropDatabase(function(err, res) {
+            console.log('Dropped');
+            this.alice = {
+                username: 'alice',
+                _id: 'AAAAAAAAAAAAAAAAAAAAAAAA'
+            };
 
-        this.bob = {
-            username: 'bob',
-            _id: 'BBBBBBBBBBBBBBBBBBBBBBBB'
-        };
+            this.bob = {
+                username: 'bob',
+                _id: 'BBBBBBBBBBBBBBBBBBBBBBBB'
+            };
 
-        this.chuck = {
-            username: 'chuck',
-            _id: 'CCCCCCCCCCCCCCCCCCCCCCCC'
-        };
+            this.chuck = {
+                username: 'chuck',
+                _id: 'CCCCCCCCCCCCCCCCCCCCCCCC'
+            };
 
-        // Create users
-        var promiseA = chai.request(app)
-                .put('/users/' + this.alice._id)
-                .send(this.alice);
-        var promiseB = chai.request(app)
-                .put('/users/' + this.bob._id)
-                .send(this.bob);
-        var promiseC = chai.request(app)
-                .put('/users/' + this.chuck._id)
-                .send(this.chuck);
-        return Promise.all([promiseA, promiseB, promiseC]);
+            // Create users
+            var promiseA = chai.request(app)
+                    .put('/users/' + this.alice._id)
+                    .send(this.alice);
+            var promiseB = chai.request(app)
+                    .put('/users/' + this.bob._id)
+                    .send(this.bob);
+            var promiseC = chai.request(app)
+                    .put('/users/' + this.chuck._id)
+                    .send(this.chuck);
+            Promise.all([promiseA, promiseB, promiseC]).then(function() {
+                done();
+            });
+        }.bind(this));
     });
 
     describe('/messages', function() {
