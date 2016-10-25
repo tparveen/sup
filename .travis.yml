@@ -8,3 +8,10 @@ addons:
     - mongodb-3.2-precise
     packages:
     - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: Kp/WTvVrW7Rs6hjGpBK6iZ5fiTVm2GY6VgQmavh6VIbThv2tsKKALbQB47qxMV5IUK1M4RCsK6XkdLWtOrGEyBCvrQ4kUl5Mr7dHU4tHtlOuFgNtJI31EI4gOuFFK0dG0XVRy8L1iF8zOstjlwlRexnMrf1PunMbRIzf/NGBy8+0cYouzMURksPGOx7p8fnEbXc5r2V8NGF8KLZ7+il9Jny5tSyQHKzYHvvSGfYbZdPOHj0IIEeWnCzAbSWIJx8C9q0pHZw2FoVDpbf56CQte7NGykKv+0oQgM/phudwiRfwfzlMcu3obX6Rr6huA+GDlP41yXuqMe5o3R+kTFh8Whwm85jMUGcqZJ6rMAYY9I9F85RU/2LK9lVyIkCvxCupgLVwnGcD7lkfsISjOhZqYdwg46f0tnJRGiE1tlWTNjzGMhE7bStr9qNMdPmqAHL6+fcYAAvDgwVV2YfLM7fsuad2WxoQ2OredvZUXPmJufOl9g4vu2XpZ9ssFbFSIBGyObDXvTJxhu1Y27v8iatjg80anhw/FZoWg17gC1L2AfIGTAIs8bKQuHBKQMvrQhDG+jtjtdYWddNB5CRuPR9i9u79F6xfGRR1zKlRqejcbpWPuedOW2ZFurLXvxGXGeyVdnNL2a1b8w3EWgtPe40ASjlJj4ZncdWYEPny2cBoltg=
+  app: glacial-brushlands-51369
+  on:
+    repo: tparveen/sup
